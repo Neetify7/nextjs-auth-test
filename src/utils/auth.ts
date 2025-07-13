@@ -11,9 +11,7 @@ export const sessionOptions: SessionOptions = {
   cookieOptions: {
     secure: process.env.NODE_ENV == "production",
   },
-  httpOnly: true,
-  secure: true,
-  sameSite: "lax",
+
   ttl: 0,
 };
 
