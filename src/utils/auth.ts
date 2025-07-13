@@ -11,6 +11,8 @@ export const sessionOptions: SessionOptions = {
   cookieOptions: {
     secure: process.env.NODE_ENV == "production",
   },
+
+  ttl: 0,
 };
 
 export async function getSession() {
