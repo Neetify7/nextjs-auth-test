@@ -1,14 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getIronSession } from "iron-session";
-import { SessionData, sessionOptions } from "@/utils/auth";
+import { getSession } from "@/utils/auth";
 
 export async function middleware(request: NextRequest) {
-  const response = NextResponse.next();
-  const session = await getIronSession<SessionData>(
-    request,
-    response,
-    sessionOptions
-  );
+  const session = await getSession();
   const redirectPath = new URL(request.url).pathname;
 
   if (!session.isAuthenticated) {
@@ -20,7 +14,7 @@ export async function middleware(request: NextRequest) {
     );
   }
 
-  return response;
+  return NextResponse.next();
 }
 
 export const config = { matcher: ["/protected/:path*"] };
